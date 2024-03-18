@@ -3,14 +3,15 @@ import './App.css';
 
 import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
+import SearchForm from './components/molecules/SearchForm/SearchForm';
 
 function App() {
   return (
     <div className="flex flex-col min-h-screen">
       <Header />
-      <main className="flex-grow bg-slate-300">
+      <main className="flex-grow bg-base-color">
         <div>
-          <p>アプリ</p>
+          <SearchForm />
         </div>
       </main>
       <Footer />
