@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import PrimaryButton from "../../atoms/Button/PrimaryButton";
 import SearchTab from "../../atoms/Tab/SearchTab";
@@ -6,10 +6,10 @@ import InputText from "../../atoms/Input/InputText";
 import DropDown from "../../atoms/Input/DropDown";
 
 interface SearchParams {
-  [key: string]: {
-    [key: string]: string;
-  };
+  [key: string]: any;
 }
+
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const SearchForm: React.FC = () => {
   const [activeTab, setActiveTab] = useState("tab1");
@@ -22,9 +22,26 @@ const SearchForm: React.FC = () => {
       title: "",
     }
   });
+  
+  const [composers, setComposers] = useState<SearchParams>({})
+  const [categories, setCategories] = useState<SearchParams>({})
 
-  const composers = ["作曲者1", "作曲者2", "作曲者3", "作曲者4"]
-  const categories = ["マーチ", "課題曲", "ポップス"]
+  const fetchComposers = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/composers`);
+    const data = await response.json();
+    setComposers(data);
+  };
+
+  const fetchCategories = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/categories`);
+    const data = await response.json();
+    setCategories(data);
+  };
+
+  useEffect(() => {
+    fetchComposers();
+    fetchCategories();
+  }, []);
 
   const handleTabClick = (tab: string) => {
     setActiveTab(tab);
