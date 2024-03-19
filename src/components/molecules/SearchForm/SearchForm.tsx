@@ -1,69 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import PrimaryButton from "../../atoms/Button/PrimaryButton";
 import SearchTab from "../../atoms/Tab/SearchTab";
 import InputText from "../../atoms/Input/InputText";
 import DropDown from "../../atoms/Input/DropDown";
+import useSearchForm from "./useSearchForm";
 
 interface SearchParams {
-  [key: string]: {
-    [key: string]: string;
-  };
+  [key: string]: any;
 }
 
+const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
+
 const SearchForm: React.FC = () => {
-  const [activeTab, setActiveTab] = useState("tab1");
-  const [searchValues, setSearchValues] = useState<SearchParams>({
-    tab1: {
-      title: "",
-      composer: "",
-    },
-    tab2: {
-      title: "",
-    }
-  });
+  const {
+    activeTab,
+    tab1Values,
+    tab2Values,
+    handleTabClick,
+    handleTab1Change,
+    handleTab2Change,
+    handleSearch,
+  } = useSearchForm();
+  
+  const [composers, setComposers] = useState<SearchParams>({})
+  const [categories, setCategories] = useState<SearchParams>({})
 
-  const composers = ["作曲者1", "作曲者2", "作曲者3", "作曲者4"]
-  const categories = ["マーチ", "課題曲", "ポップス"]
-
-  const handleTabClick = (tab: string) => {
-    setActiveTab(tab);
+  const fetchComposers = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/composers`);
+    const data = await response.json();
+    setComposers(data);
   };
 
-  const handleInputChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    tab: string,
-    field: string
-  ) => {
-    setSearchValues((prevState) => ({
-      ...prevState,
-      [tab]: {
-        ...prevState[tab],
-        [field]: event.target.value,
-      },
-    }));
+  const fetchCategories = async () => {
+    const response = await fetch(`${API_BASE_URL}/api/categories`);
+    const data = await response.json();
+    setCategories(data);
   };
 
-
-  const handleSelectChange = (
-    event: React.ChangeEvent<HTMLSelectElement>,
-    tab: string,
-    field: string
-  ) => {
-    setSearchValues((prevState) => ({
-      ...prevState,
-      [tab]: {
-        ...prevState[tab],
-        [field]: event.target.value,
-      },
-    }));
-  };
-
-  const handleSearch =() => {
-    const searchParams = searchValues[activeTab];
-    console.log("Search params:", searchParams);
-
-  }
+  useEffect(() => {
+    fetchComposers();
+    fetchCategories();
+  }, []);
 
   return (
     <div className="flex justify-center mt-20">
@@ -78,8 +56,8 @@ const SearchForm: React.FC = () => {
               <InputText 
                 label="楽曲タイトル" 
                 placeholder="楽曲タイトル" 
-                value={searchValues.tab1.title} 
-                onChange={(event) => handleInputChange(event, "tab1", "title")}
+                value={tab1Values.title} 
+                onChange={(event) => handleTab1Change(event, "title")}
               />
             </>
           )}
@@ -88,20 +66,20 @@ const SearchForm: React.FC = () => {
               <InputText 
                 label="楽曲タイトル" 
                 placeholder="楽曲タイトル" 
-                value={searchValues.tab2.title} 
-                onChange={(event) => handleInputChange(event, "tab2", "title")}
+                value={tab2Values.title} 
+                onChange={(event) => handleTab2Change(event, "title")}
               />
               <DropDown
                 label="作曲者名" 
-                value={searchValues.tab2.composer}
+                value={tab2Values.composer}
                 items={composers}
-                onChange={(event) => handleSelectChange(event, "tab2", "composer")}
+                onChange={(event) => handleTab2Change(event, "composer")}
               />
               <DropDown
                 label="カテゴリ" 
-                value={searchValues.tab2.category}
+                value={tab2Values.category}
                 items={categories}
-                onChange={(event) => handleSelectChange(event, "tab2", "category")}
+                onChange={(event) => handleTab2Change(event, "category")}
               />
             </div>
           )}
