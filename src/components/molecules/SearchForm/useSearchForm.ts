@@ -35,11 +35,6 @@ const useSearchForm = () => {
     }));
   };
 
-  const handleSearch = () => {
-    const searchParams = activeTab === "tab1" ? tab1Values : tab2Values;
-    console.log("Search params:", searchParams);
-  };
-
   const handleSearch = async () => {
     const searchParams = activeTab === "tab1" ? tab1Values : tab2Values;
     const response = await fetch(`${API_BASE_URL}/api/search`, {
