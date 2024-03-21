@@ -4,7 +4,7 @@ import './App.css';
 
 import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
-import SearchForm from './components/molecules/SearchForm/SearchForm';
+import SearchForm from './components/organisms/SearchForm/SearchForm';
 import SearchResults from './components/organisms/SearchResults/SearchResults';
 
 const App: React.FC =() => {

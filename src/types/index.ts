@@ -25,6 +25,13 @@ export interface SearchResult {
     liveBroadcastContent: string;
     publishTime: string;
   };
+  statistics: {
+    viewCount: string;
+    likeCount: string;
+    dislikeCount: string;
+    favoriteCount: string;
+    commentCount: string;
+  },
 }
 
 interface Thumbnail {
