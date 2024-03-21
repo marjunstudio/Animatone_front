@@ -4,20 +4,31 @@ export interface SearchParams {
 }
 
 // 検索結果を受け取る配列
-export interface SearchResultsProps {
-  videos: Video[];
-}
-
-// YoutubeAPIからのレスポンス
-export interface Video {
-  id: string;
+export interface SearchResult {
+  kind: string;
+  etag: string;
+  id: {
+    kind: string;
+    videoId: string;
+  };
   snippet: {
+    publishedAt: string;
+    channelId: string;
     title: string;
     description: string;
     thumbnails: {
-      medium: {
-        url: string;
-      };
+      default: Thumbnail;
+      medium: Thumbnail;
+      high: Thumbnail;
     };
+    channelTitle: string;
+    liveBroadcastContent: string;
+    publishTime: string;
   };
+}
+
+interface Thumbnail {
+  url: string;
+  width: number;
+  height: number;
 }

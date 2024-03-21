@@ -4,7 +4,7 @@ import PrimaryButton from "../../atoms/Button/PrimaryButton";
 import SearchTab from "../../atoms/Tab/SearchTab";
 import InputText from "../../atoms/Input/InputText";
 import DropDown from "../../atoms/Input/DropDown";
-import useSearchForm from "./useSearchForm";
+import useSearchForm from "../../../hooks/useSearchForm";
 
 interface SearchParams {
   [key: string]: any;
