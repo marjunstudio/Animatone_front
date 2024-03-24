@@ -2,6 +2,9 @@
 export interface SearchParams {
   [key: string]: any;
 }
+export interface SearchParams2 {
+  q: string;
+}
 
 // 検索結果を受け取る配列
 export interface SearchResult {
@@ -38,4 +41,8 @@ interface Thumbnail {
   url: string;
   width: number;
   height: number;
+}
+
+export interface Videos {
+  items: SearchResult[];
 }

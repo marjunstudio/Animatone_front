@@ -6,6 +6,7 @@ import Header from './components/organisms/Header/Header';
 import Footer from './components/organisms/Footer/Footer';
 import SearchForm from './components/organisms/SearchForm/SearchForm';
 import SearchResults from './components/organisms/SearchResults/SearchResults';
+import MusicList from './components/organisms/MusicList/MusicList';
 
 const App: React.FC =() => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC =() => {
             <Routes>
               <Route path="/" element={<SearchForm />} />
               <Route path="/search-results" element={<SearchResults />} />
+              <Route path="/music-lists" element={<MusicList />} />
             </Routes>
           </div>
         </Router>
