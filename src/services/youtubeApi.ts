@@ -1,8 +1,11 @@
-import { SearchParams2, Videos } from "../types";
+import { Videos } from "../types";
 
+interface SearchWord {
+  q: string;
+}
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
-const youtubeSearch = async ( params: SearchParams2): Promise<Videos> => {
+const youtubeSearch = async ( params: SearchWord): Promise<Videos> => {
   const response = await fetch(`${API_BASE_URL}/api/search`, {
     method: 'POST',
     headers: {

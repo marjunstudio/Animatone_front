@@ -6,10 +6,6 @@ import InputText from "../../atoms/Input/InputText";
 import DropDown from "../../atoms/Input/DropDown";
 import useSearchForm from "../../../hooks/useSearchForm";
 
-interface SearchParams {
-  [key: string]: any;
-}
-
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
 const SearchForm: React.FC = () => {
@@ -21,7 +17,7 @@ const SearchForm: React.FC = () => {
     handleSearch,
   } = useSearchForm();
   
-  const [composers, setComposers] = useState<SearchParams>({})
+  const [composers, setComposers] = useState<{id: number, name: string}[]>([]);
 
   const fetchComposers = async () => {
     const response = await fetch(`${API_BASE_URL}/api/composers`);

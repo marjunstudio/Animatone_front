@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
 
-import { SearchParams } from "../types";
+// 検索時の型
+interface SearchParams {
+  [key: string]: any;
+}
 
 const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 
