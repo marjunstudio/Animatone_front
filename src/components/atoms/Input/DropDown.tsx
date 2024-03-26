@@ -3,7 +3,10 @@ import React from "react";
 interface Props {
   label: string;
   value: string;
-  items: { [key: string]: string };
+  items: {
+    id: number;
+    name: string;
+  }[];
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -17,9 +20,9 @@ const DropDown: React.FC<Props> = ({ label, value, items, onChange}) => {
         onChange={onChange}
       >
         <option value="">選択してください</option>
-        {Object.entries(items).map(([key, value]) => (
-          <option key={key} value={key}>
-            {value}
+        {items.map((item) => (
+          <option key={item.id} value={item.id}>
+            {item.name}
           </option>
         ))}
       </select>
