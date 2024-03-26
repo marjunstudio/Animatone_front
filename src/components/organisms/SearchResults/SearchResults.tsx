@@ -17,7 +17,7 @@ const SearchResults: React.FC = () => {
               alt={video.snippet.title}
               className="w-full h-48 object-cover mb-4 rounded"
             />
-            <h3 className="text-md font-semibold mb-2">{video.snippet.title}</h3>
+            <a href={`https://youtu.be/${video.id.videoId}`} className="text-md font-semibold mb-2" >{video.snippet.title}</a>
             <p className="text-gray-500">再生回数: {video.statistics?.viewCount || '-'}</p>
           </div>
         ))}
