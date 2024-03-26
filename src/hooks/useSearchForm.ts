@@ -38,8 +38,6 @@ const useSearchForm = () => {
         body: JSON.stringify(tabValues),
       });
       const data = await response.json();
-      console.log(tabValues);
-      console.log(data.items);
       navigate('/music-lists', { state: { musics: data.items } });
 
     } catch (error) {

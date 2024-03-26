@@ -1,6 +1,4 @@
-
-
-// 検索結果を受け取る配列
+// Youtbeでの検索結果を受け取る型
 export interface SearchResult {
   kind: string;
   etag: string;
