@@ -1,9 +1,4 @@
-// 検索時の型
-export interface SearchParams {
-  [key: string]: any;
-}
-
-// 検索結果を受け取る配列
+// Youtbeでの検索結果を受け取る型
 export interface SearchResult {
   kind: string;
   etag: string;
@@ -38,4 +33,8 @@ interface Thumbnail {
   url: string;
   width: number;
   height: number;
+}
+
+export interface Videos {
+  items: SearchResult[];
 }
