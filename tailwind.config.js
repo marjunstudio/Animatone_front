@@ -8,6 +8,9 @@ module.exports = {
         'base-color': '#9FD9F6',
         'main-color': '#2365DE',
         'accent-color': '#FFFF57',
+      },
+      backgroundImage: {
+        'tile-image': "url(/public/images/note.jpg)"
       }
     },
   },
